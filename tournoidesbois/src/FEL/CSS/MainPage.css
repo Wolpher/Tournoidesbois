@@ -1,0 +1,13 @@
+.header{
+    background-color: black;
+    color: white;
+    text-align: center;
+    height: 50px;
+}
+.headertxt{
+    display: inline-block;
+    padding-left: 1%;
+}
+.title{
+    text-align: center;
+}
