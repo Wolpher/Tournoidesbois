@@ -1,7 +1,8 @@
 import React from "react";
+import ReactPlayer from 'react-player'
 import GeneralInformation from "./InformationGeneral";
 import Jeux from "./Jeux";
-import './CSS/MainPage.css'
+import './CSS/Main.css'
 
 function MainPage(){
     return(
@@ -12,13 +13,16 @@ function MainPage(){
                 <p className="headertxt">trophée/médailles</p>
                 <p className="headertxt">trailer</p>
             </header>
-            <div>    
+            <div className="center mainPage">    
+                {/**la border cool de la vid? */}
                 <h1 className="title">Tournoi des bois</h1>
-                <p>Photo du tournoi</p>
+                <div className="video">
+                    <ReactPlayer url="https://www.youtube.com/watch?v=_oL42WQm3dQ&ab_channel=PMUHUB" controls={true} />
+                </div>
+                <GeneralInformation />
+                <Jeux />
             </div>
-            <GeneralInformation />
-            <Jeux />
-            <p>trailer du tournoi</p>
+           
         </div>
     )
 }

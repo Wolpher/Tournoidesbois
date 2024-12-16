@@ -1,0 +1,60 @@
+.header{
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: darkgrey;
+    height: 5vh;
+    width: 100%;
+    border-style: outset;
+}
+.headertxt{
+    display: inline-block;
+    padding-left: 1%;
+}
+.mainPage{
+    background-color: #f9f9f9;
+}
+.center{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 75%;
+    margin: auto;
+    text-align: justify;
+}
+.border{
+    border-bottom-color:lightgray;
+    border-style: outset;
+    border-radius: 1vh;
+    border-top: hidden;
+    border-left: hidden;
+    border-right: hidden;
+}
+.nodotlist{
+    list-style-type: none;
+}
+.width100{
+    width: 100%;
+}
+.video{
+    margin-top: 15vh;
+    margin-bottom: 5vh;
+}
+
+@font-face {
+    font-family: titre;
+    src: url(./fonts/lana_turner/Lana\ Turner.ttf);
+}
+@font-face {
+    font-family: p;
+    src: url(./fonts/Roboto/Roboto-Regular.ttf);
+}
+.title{
+    font-family:titre;
+    font-size: 15vh;
+    margin-top: 15vh;
+}
+p, li, h4, h3{
+    font-family: p;
+}

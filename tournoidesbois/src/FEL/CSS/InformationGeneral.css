@@ -1,4 +1,27 @@
-.medaille{
-    display: inline-block;
-    padding-right: 1%;
+.medailleimg{
+    display: flex;
+    width: 25vh;
+    height: 25vh;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
 }
+.medailletxt{
+    text-align: center;
+
+}
+.medaillediv{
+    display: flex;
+    justify-content: center;
+}
+.jeuximg{
+    width: 4%;
+    margin-right: 1vh;
+    margin-left: 50vh;
+}
+.listjeux{
+    display: flex;
+    align-items: center;
+    margin-right: 50vh;
+    margin: auto;
+}
+
