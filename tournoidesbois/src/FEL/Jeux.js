@@ -25,7 +25,7 @@ function Jeux(){
 
 function ClashOfClan(){
     return(
-    <div className="center border">
+    <div id="coc" className="center border">
         <img src={coc} alt="Clash of Clan"/>
         <h4>Durée: 2 semaines</h4>
         <h4>Format: 2 de 3</h4>
@@ -66,7 +66,7 @@ function ClashOfClan(){
 
 function Overwatch(){
     return(
-        <div className="center border">
+        <div id="ow" className="center border">
             <img src={ow} alt="Overwatch"/>
             <h4>Durée: 2 mois</h4>
             <h4>Forma: 2 phases</h4>
@@ -97,7 +97,7 @@ function Overwatch(){
 
 function RocketLeague(){
     return(
-        <div className="center border">
+        <div id="rl" className="center border">
             <img src={rl} alt="Rocket league"/>
             <h4>Durée: 2 mois</h4>
             <h4>Format: double élimination bracket (lotterie pour les équipes qui joue contre qui en premier)</h4>
@@ -124,7 +124,7 @@ function RocketLeague(){
 function MineCraft(){ 
     
     return(
-        <div className="center">
+        <div id="mc" className="center">
             {/* va devoir changer, les informations ne sont pas à 100% accurate */}
             <img src={mc} alt="Minecraft"/>
             <h4>Durée: 3 mois</h4>
@@ -154,7 +154,7 @@ function MineCraft(){
 }
 function ClashRoyale(){
     return(
-        <div className="center border">
+        <div id="cr" className="center border">
             <img src={cr} alt="Clash Royale"/>
             <h4>Durée: 2 mois (1 mois pour faire les équipes et 1 mois pour faire le tournoi)</h4>
             <h4>Format: double élimination bracket 2v2 (gamemode au choix des équipes)</h4>

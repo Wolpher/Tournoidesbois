@@ -12,19 +12,19 @@ import fakebronze from '../img/fakebronze.png'
 import {FcCancel, FcCheckmark } from "react-icons/fc"
 export default function GeneralInformation(){
     return(
-        <>
+        <div>
             <InformationGeneral />
             <div className="border center">
                 <Equipe />
                 <Regle />
             </div>
-        </>
+        </div>
     )
 }
 
 function InformationGeneral(){
     return(
-        <div>
+        <div id="listJeux"> {/** préfère renvoyer le user ici à cause que le header cache le h3 de la liste de jeux*/}
             <div className="center border">
                 <h3>But: </h3>
                 <p>Le but premier de cette nouvelle version du tournoi des boys est de créer plus de hype pour le tournoi et 
@@ -158,3 +158,4 @@ function ListJeux(){
             </div>
     )
 }
+
