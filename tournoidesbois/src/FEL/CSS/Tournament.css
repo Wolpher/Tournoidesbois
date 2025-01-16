@@ -1,0 +1,85 @@
+.cheh{
+    border-right: solid;
+    border-left: solid;
+}
+
+.maxPage{
+    display: inline;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.leftdiv{
+    height: 100%;
+    width: 20vh;
+    flex-direction: column;
+    align-items: center;
+    float:left;
+    
+}
+.rightdiv{
+    height: 100%;
+    width: 50vh;
+    float:right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.alreadyHaveTournamentDiv{
+    border-left: 1.5vh solid rgb(46,204,113);
+    height: 25vh;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(147, 250, 165, .6);
+}
+.fcInfo{
+    height: 2.5vh;
+    width: 2.5vh;
+    padding-right: 1.5vh;
+}
+.formTournament {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+table{
+    border-spacing: 2vh;
+}
+.tdInput{
+    margin: 0;
+    height: 3vh;
+    text-align: center;
+}
+.divFormTournament{
+    
+    border-color: lightgray;
+    border-style: groove;
+    border-radius:1vh;
+    padding-top: 1vh;
+    padding-bottom: 2vh;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.buttonList{
+    justify-content: center;
+    margin-right: 0;
+    margin-left: 0;
+    
+}
+.uljeuxList{
+    padding-right: 0;
+    padding-left:0;
+}
+.test{
+    border: solid
+}
