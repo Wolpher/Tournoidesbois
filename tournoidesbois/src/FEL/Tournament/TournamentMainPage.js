@@ -1,16 +1,21 @@
-import React, {useState, useRef } from "react";
-import ClashOfClan from "./ClashOfClan";
+import React, {useState, useRef} from "react";
+import {RightDivClashOfClan} from "./ClashOfClan";
 import CLashRoyale from "./ClashRoyale";
 import Overwatch2 from "./Overwatch";
 import RocketLeague from "./RocketLeague";
 import Minecraft from "./Minecraft";
+import TournamentCreation from "../../Controller/TournamentCreation";
 import '../CSS/Tournament.css'
 import '../CSS/Main.css'
 import { FcInfo } from "react-icons/fc";
 import { CreateTournament, GetAllPlayers } from "../../Controller/APICall";
 
+
 function TournamentMainPage(){
     const [game, setGame] = useState('')
+   
+    const ref = useRef(null)
+    
 
     const handleClick = (e) =>{
         setGame(e)
@@ -19,7 +24,7 @@ function TournamentMainPage(){
     const rightDivSwitch = (param) =>{
         switch(param){
             case 'ClashOfClan':
-                return <ClashOfClan />
+                return <RightDivClashOfClan />
             case 'ClashRoyale':
                 return <CLashRoyale/>
             case 'Overwatch2':
@@ -32,10 +37,44 @@ function TournamentMainPage(){
                 return <h3>No Game selected</h3>
         }
     }
+
+    const onMouseDown = React.useCallback((e) =>{
+        const startPos = {
+            left: ref.current.scrollLeft,
+            top: ref.current.scrollTop,
+            x: e.clientX,
+            y: e.clientY,
+        }
+
+        const handleMouseMove = (e) =>{
+            const dx = e.clientX - startPos.x;
+            const dy = e.clientY - startPos.y;
+            ref.current.scrollTop = startPos.top - dy;
+            ref.current.scrollLeft = startPos.left - dx;
+            updateCursor(ref.current)
+        }
+
+        const handleMouseUp = () => {
+            console.log("test")
+            document.removeEventListener('mousemove', handleMouseMove);
+            document.removeEventListener('mouseup',handleMouseUp);
+            resetCursor(ref.current)
+        }
+        document.addEventListener('mousemove', handleMouseMove);
+        document.addEventListener('mouseup', handleMouseUp);
+    }, []);
+    
+    const updateCursor = (ref) =>{
+        ref.style.cursor = 'grabbing';
+        ref.style.userSelect = 'none';
+    }
+    const resetCursor = (ref) =>{
+        ref.style.cursor = 'context-menu';
+        ref.style.removeProperty('user-select');
+    }
     return(
         <div className="maxPage">
-            <div className="display cheh leftdiv ">
-                {/**doit check si je ne peux pas changer la façon que je fais ça */}
+            <div className="tournamentDisplay cheh leftdiv ">
                 <h3>Liste de jeux:</h3>
                 <ul className="uljeuxList nodotlist">
                     <li>
@@ -55,12 +94,15 @@ function TournamentMainPage(){
                     </li>
                 </ul>
             </div>
+            <div ref={ref} className="tournamentDisplay centerdiv " onMouseDown={(e) => onMouseDown(e)} >
+                    <TournamentCreation gameTitle={"Clash of clan"}/>
+            </div>
             <div className="cheh rightdiv">
                 {rightDivSwitch(game)}
             </div>
         </div>
     )
-
+    
 }
 
 const AlreadyHaveTournament = () => {
@@ -84,50 +126,46 @@ const FormTournament = ({gameTitle, forma, duree}) =>{
 
     //juste pour faire des test mais au final ça work so...
     const tournament = useRef({
-        tournament:{
             nbEquipe: nbEquipe,
             nbUserPerTeam: nbJoueur,
             teams:[]
-        }
         
         
     })
 
     const teamIndexFound = useRef(false)
-    {/**fuck react c'est de la criss de merrde pour du json besoin de tout check pour être sûr que rien en fuck up à 100% et que tout soit bien codé*/}
     const allPlayers = GetAllPlayers()
 
     const handleInfoTournoiSubmit = () => {
         setNext(true)
     }
 
+    
+    
     const handleInfoTournoiNextSubmit = (e) =>{
         e.preventDefault();
-        //work like this so I need to be able to change this shit so it work with my other shit maybe with like 2 maps where it all go idk bro need to do some testing but I don,t think it will be that hard
-        /*test2.current.teams = {ca:{
-            members:[{
-                username:12313
-            },{
-                username:'dadas'
-            }]
-        },
-        caa:{
-            username:'dasda',
-            username:123123
-        }}*/
-       const sortteamPlayer = teamPlayer.sort((a,b) => a.teamId>b.teamId ? 1:-1)  //maybe change it to go somewhere else??
-       const test223 = test.map((test) => {
+       const sortteamPlayer = teamPlayer.sort((a,b) => a.teamId>b.teamId ? 1:-1)  //sort the list of player
+
+       const newTeams = teams.map((team) => {
         const player = sortteamPlayer.map((player) => {
-            if(test.id === player.teamId){
+            if(team.id === player.teamId){
                 return {...player}
             }
-        }).filter(Boolean)
-        return {...test, members:player}
+        }).filter(Boolean) //take out all the undefined
+        console.log("Players:")
+        console.log(player)
+
+        const playerUsernameOnly = player.map((player) => { //I don't want any other information than the username of the player because the other information is useless
+            return player.username
+        })
+
+        console.log(playerUsernameOnly)
+        return {...team, members:playerUsernameOnly}
        })
-       console.log(test223)
-       tournament.current.tournament.teams = test223
-       console.log(tournament.current)
-       //CreateTournament({gameTitle:gameTitle,tournament:tournament.current}) //still fuck up at the create but need just to clean my code because now that's ugly af
+       console.log(newTeams)
+       tournament.current.teams = newTeams
+       console.log(JSON.stringify(tournament.current))
+       CreateTournament({gameTitle:gameTitle,tournament:tournament.current}) //still fuck up at the create but need just to clean my code because now that's ugly af
     }
 
     const handleTeamName = (e) =>{
@@ -189,7 +227,7 @@ const FormTournament = ({gameTitle, forma, duree}) =>{
         const newTeams = teams.map((item) => {
             if(item.id === index){
                 teamIndexFound.current = true
-                return {...item, id:index, teamName:teamName}
+                return {...item, id:index, teamName :teamName}
             }else{
                 return item
             }
@@ -245,7 +283,7 @@ const FormTournament = ({gameTitle, forma, duree}) =>{
             <div className="test" key={index}>
                 <h1>Équipe {index + 1 }</h1>
                 <label>name:</label>
-                <input type="text" onChange={(e) => handleTeamName(e.target.value)}/> {/**maybe change for useRef but need to do some testing later to be sure everything is alright */}
+                <input type="text" onChange={(e) => handleTeamName(e.target.value)}/>
                 <input onChange={() => createTeams(index)}/>
                 <br/>
                 <h3>Select your players</h3>

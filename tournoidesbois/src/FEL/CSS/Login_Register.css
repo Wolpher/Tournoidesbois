@@ -18,19 +18,55 @@
     background-color: ivory;
     font-size: 2vh;
 }
-
+.contenerValidation{
+    height: 30%;
+    width: 80%;
+    display:flex;
+}
+.divNotValidationLeft{
+    height: 100%;
+    width: 5%;
+    background-color: rgb(247, 29, 29);
+}
+.divNotValidationRight{
+    height: 100%;
+    width: 95%;
+    background-color: rgba(239, 70, 70, 0.554);
+    display:flex; 
+    align-items: center;
+    justify-content: center;
+}
+.divValidationLeft{
+    height:100%;
+    width:5%;
+    background-color: rgb(13, 173, 13);
+}
+.divValidationRight{
+    height: 100%;
+    width: 95%;
+    background-color: rgba(3, 220, 3, 0.511);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.validationTxt{
+    font-size: medium;
+    font-style: italic;
+}
 input{
     width: 15vh;
-    height: 2vh;
+    height: 3vh;
     margin-top: 2vh;
     margin-left: 2vh;
+    border-radius: 1vh;
 }
-
 button{
-    width: 15vh;
+    width: 80%;
     height: 5vh;
     margin-top:3vh;
+    margin-bottom: 3vh;
     border-style: outset;
+    border-radius: 1vh;
     background-color: lightgray;
     font-size: 2vh;
 }

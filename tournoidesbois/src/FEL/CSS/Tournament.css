@@ -3,25 +3,32 @@
     border-left: solid;
 }
 
+
+
 .maxPage{
-    display: inline;
+    display: inline-flex;
     height: 100%;
     width: 100%;
     position: absolute;
 }
-
+.tournamentDisplay{
+    display: inline-flex;
+}
 .leftdiv{
     height: 100%;
-    width: 20vh;
+    width: 10%;
     flex-direction: column;
     align-items: center;
-    float:left;
     
+}
+.centerdiv{
+    height: 100%;
+    width: 60%;
+    overflow-x:scroll;
 }
 .rightdiv{
     height: 100%;
-    width: 50vh;
-    float:right;
+    width: 30%;
     display: flex;
     justify-content: center;
     align-items: center;
