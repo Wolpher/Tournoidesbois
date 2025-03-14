@@ -26,8 +26,9 @@ async function getUser(user){
             'Content-Type' : 'application/json'
         },
     })
-    console.log(response)
-    {/**Doit pouvoir handle la rep mais ça c'Est à faire avec le frontend bitch */}
+    const responseData = await response.json();
+    console.log("responseData: " + JSON.stringify(responseData));
+    return responseData;
 }
 function GetAllPlayers(){
     const [allPlayers, setAllPlayers] = useState([])
@@ -47,6 +48,29 @@ function GetAllPlayers(){
     }, [])
     return allPlayers
 }
+
+async function Promotion(username){
+    const response = await fetch(`http://localhost:8083/AdminPerms?username=${username}`,{
+        method:"PUT",
+        headers:{
+             'Content-Type':'application/json'
+             }
+        })
+    const responseData = await response.json()
+    return responseData.success;
+}
+
+async function Demotion(username){
+    const response = await fetch(`http://localhost:8083/MemberPerms?username=${username}`,{
+        method:"PUT",
+        headers:{
+            'Content-Type':'application/json'
+        }
+    })
+    const responseData = await response.json();
+    return responseData.success;
+}
+
 function HaveTournament(gameTitle) {
     const [haveTournament, setHaveTournament] = useState();
 
@@ -106,5 +130,7 @@ export{
     GetAllPlayers,
     HaveTournament,
     CreateTournament,
-    GetTournament
+    GetTournament,
+    Promotion,
+    Demotion
 }

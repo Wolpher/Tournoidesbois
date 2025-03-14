@@ -9,6 +9,7 @@ import '../CSS/Tournament.css'
 import '../CSS/Main.css'
 import { FcInfo } from "react-icons/fc";
 import { CreateTournament, GetAllPlayers } from "../../Controller/APICall";
+import Header from "../Header";
 
 
 function TournamentMainPage(){
@@ -74,6 +75,7 @@ function TournamentMainPage(){
     }
     return(
         <div className="maxPage">
+            <Header/>
             <div className="tournamentDisplay cheh leftdiv ">
                 <h3>Liste de jeux:</h3>
                 <ul className="uljeuxList nodotlist">

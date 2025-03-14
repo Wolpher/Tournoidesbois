@@ -20,6 +20,7 @@ export default function Register(){
         }
             const result = await PostUser(user) //need to wait because there is a promise :/
             setResponseData(result)
+            //need to go to the pdf and so maybe delete the validation function since no msg would be need
     }
     const validation = () =>{
         return(
