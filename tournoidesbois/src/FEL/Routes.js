@@ -6,9 +6,9 @@ import {Login} from './Login_Register/Login';
 import NotFound from './404NotFound';
 import Statistiques from './UserRelated/Statistiques';
 import UserProfile from './UserRelated/UserProfile';
-
 const Path = () =>{
     return(
+      <>
       <Routes>
         <Route path="/" element={<MainPage />}/>
         <Route path="/register" element={<Register/>}/>
@@ -18,6 +18,7 @@ const Path = () =>{
         <Route path="/userProfile" element={<UserProfile/>}/>
         <Route path='*' element={<NotFound/>}/>
       </Routes>
+      </>
     )
 }
 

@@ -4,26 +4,33 @@ import { AlreadyHaveTournament, FormTournament } from "./TournamentMainPage";
 import '../CSS/Tournament.css'
 
 function RightDivClashOfClan() {
-    const [haveTournament, setHaveTournament] = useState(null);
+    const [data, setData] = useState(null);
 
+    const result = HaveTournament({gameTitle:'Clash of clan'})
     useEffect(() => {
-        const checkTournament = async () => {
-            const result = await haveTournament('Clash of clan')
-            setHaveTournament(result)
-        }
-        //besoin de check car j'appel jamais la fonction donc c'est tout le temps null, mais j'ai erreur quand je l'appel
-    },[])
-
-
+            setData(result)
+    },[result])
+    
+    if(data === null || data.game === null){
+        return(
+            <h1>...Loading</h1>
+        )
+    }
+    if(data != null && data.game != null)
     return (
         <>
-            {haveTournament ? (
-                AlreadyHaveTournament()
+            {data.haveTournament ? (
+                <AlreadyHaveTournament/>
             ) : (
-                FormTournament({gameTitle: "Clash of clan", forma: "TWOOFTHREE", duree:"2 mois"})
+                <FormTournament gameTitle={data.game.title} forma={data.game.forma} duree={data.game.duration}/>
             )}
         </>
     );
 }
 
-export {RightDivClashOfClan}
+function CenterDivClashOfClan(){
+    return(
+        <h1>HIHIHIHA</h1>
+    )
+}
+export {RightDivClashOfClan, CenterDivClashOfClan}

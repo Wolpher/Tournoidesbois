@@ -12,10 +12,6 @@ async function PostUser (user){
         })
         const responseData = await response.json();
         return responseData.success
-        
-    
-    
-    
 }
 
 async function getUser(user){
@@ -46,7 +42,7 @@ function GetAllPlayers(){
     }
     fetchAllPlayers()
     }, [])
-    return allPlayers
+    return allPlayers;
 }
 
 async function Promotion(username){
@@ -71,11 +67,14 @@ async function Demotion(username){
     return responseData.success;
 }
 
-function HaveTournament(gameTitle) {
-    const [haveTournament, setHaveTournament] = useState();
+function HaveTournament({gameTitle}) {
+    const [data, setData] = useState({
+        haveTournament:null,
+        game:null
+    });
 
     useEffect(() => {
-        const fetchTournament = async () => {  
+        const FetchTournament = async () => {  
             const response = await fetch(`http://localhost:8083/haveTournament?gameTitle=${gameTitle}`,{
                 method:"GET",
                 headers:
@@ -84,11 +83,12 @@ function HaveTournament(gameTitle) {
                 }
                 });
                 const responseData = await response.json()
-                setHaveTournament(responseData.haveTournament)
+                setData({haveTournament:responseData.haveTournament, game:JSON.parse(responseData.game)})
             }
-            fetchTournament()
+            FetchTournament()
         }, [gameTitle])
-    return haveTournament
+        console.log(data)
+    return data
     
 }
 
@@ -123,6 +123,27 @@ function GetTournament({gameTitle}){
     },[gameTitle])
     return tournament
 }
+function GetAllPlayersSpecificTournament({gameTitle}){
+    const [allPlayers, setAllPlayers] = useState();
+    useEffect(()=> {
+        const fetchAllPlayers = async () => {
+            const response = await fetch(`http://localhost:8083/GetAllUsersSpecificTournament?tournament=${gameTitle}`,{
+                method:"GET",
+                headers:{
+                    'Content-Type':'application/json'
+                }
+            })
+            const responseData = await response.json();
+            if(responseData.success === true){
+                setAllPlayers(JSON.parse(responseData.users))
+            }else{
+                setAllPlayers([])
+            }
+        }
+        fetchAllPlayers();
+    },[gameTitle])
+    return allPlayers;
+}
 
 export{
     PostUser,
@@ -132,5 +153,6 @@ export{
     CreateTournament,
     GetTournament,
     Promotion,
-    Demotion
+    Demotion,
+    GetAllPlayersSpecificTournament
 }

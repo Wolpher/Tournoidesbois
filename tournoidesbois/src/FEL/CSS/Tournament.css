@@ -1,10 +1,4 @@
-.cheh{
-    border-right: solid;
-    border-left: solid;
-}
-
-
-
+/*------------------Page display--------------*/
 .maxPage{
     display: inline-flex;
     height: 100%;
@@ -16,25 +10,58 @@
 }
 .leftdiv{
     height: 100%;
-    width: 10%;
+    width: 3%;
+    margin-top: 5vh; /*because of the header */
+    background-color: #383838;
+    /*
+    #2a2a2a
+    #323232
+    #383838 (coup de coeur)
+    #303540 se combine bien avec lui d'en dessous genre pour les bracket ou quelque chose du genre
+    #3d4351
+    */
+    border-right: ridge grey;
     flex-direction: column;
     align-items: center;
-    
+}
+.testrealquick{
+    background-color: #3d4351;
 }
 .centerdiv{
     height: 100%;
-    width: 60%;
+    width: 77%;
+    margin-top: 5vh; /*because of the header */
+    background-color: #303540;
+    /*rgb(184, 184, 184);*/
     overflow-x:scroll;
 }
 .rightdiv{
     height: 100%;
-    width: 30%;
+    width: 20%;
+    margin-top: 5vh; /*because of the header */
+    background-color: #5f5f5f;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    border-left: groove gray;
 }
 
+/*------------------Icons--------------*/
+.icons{
+    height: 5vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.selected{
+    background-color: rgb(78, 78, 78);
+}
+.icons:hover{
+    background-color: rgb(78, 78, 78);
+}
+/*-----------Right Div--------------------*/
 .alreadyHaveTournamentDiv{
     border-left: 1.5vh solid rgb(46,204,113);
     height: 25vh;
@@ -45,6 +72,33 @@
     justify-content: center;
     background-color: rgba(147, 250, 165, .6);
 }
+.nextFormTournament{
+    width: 100%;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.nextFormTournament div{
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
+    border-bottom: groove lightgray;
+    border-top: groove lightgray;
+    border-radius: 1vh;
+}
+.nextFormTournament table{
+    width: 100%;
+    height: 25vh;
+    border-bottom: groove lightgray;
+    border-top: groove lightgray;
+    border-radius: 1vh;
+    
+}
+.nextFormTournament td,th{
+    text-align: center;
+}
+
 .fcInfo{
     height: 2.5vh;
     width: 2.5vh;
@@ -81,12 +135,9 @@ table{
     justify-content: center;
     margin-right: 0;
     margin-left: 0;
-    
 }
 .uljeuxList{
     padding-right: 0;
     padding-left:0;
 }
-.test{
-    border: solid
-}
+/*---------------------------------------------------*/

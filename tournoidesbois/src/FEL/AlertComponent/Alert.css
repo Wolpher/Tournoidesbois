@@ -1,0 +1,36 @@
+.alert-container{
+    display: flex;
+    position: absolute;
+    border-radius: 3vh;
+}
+
+.symbol-container{
+    width: 86px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 3vh;
+    border-bottom-left-radius: 3vh;
+}
+.symbol{
+    font-size: 1.75rem;
+}
+.description-container{
+    font-size:1.05rem;
+    margin:15px 20px;
+    width: 100%;
+}
+.description-title{
+    font-weight: 700;
+}
+.symbol-close-link{
+    cursor:pointer;
+    color: black;
+    display: flex;
+    align-items: center;
+    margin-right: .5vh;
+}
+.mainbody{
+    display: flex;
+    flex-direction: column;
+}

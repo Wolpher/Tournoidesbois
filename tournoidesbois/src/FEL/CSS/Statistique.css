@@ -1,0 +1,303 @@
+.maxPage{
+    display: inline-flex;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color: #ebe7e7;
+}
+.statistiquePage{
+    display: flex;
+    flex-direction: column;
+    margin-top: 5vh;
+    width: 100%;
+    align-items: center;
+    justify-content: center; /* peut-être pas nécessaire */
+}
+.rechercheSection{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 10vh;
+    border:ridge;
+    background-color: rgb(80, 80, 80);
+}
+.rechercheSection input{
+    width: 50%;
+    height: 5vh;
+    border-radius: 0;
+}
+.rechercheSection select{
+    background-color: white;
+    height: 5.6vh;
+    margin-top: 1.8vh;
+}
+
+.joueursSection{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 80%;
+    height: 80%;
+    background-color: #c1c1c16a;
+}
+.joueursSectionMainDiv{
+    border:ridge;
+    border-top: none;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y:scroll;
+    overflow-x: hidden;
+}
+
+/*-----------------------Advance Bar-----------------------*/
+
+.GeneralAdvanceBar{
+    border:ridge;
+    border-top: none;
+    height: 3vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: grey;
+}
+.brain{
+    color:rgb(202, 117, 130);
+}
+.medailleOr{
+    color:#e8c609;
+}
+.medailleArgent{
+    color:#C0C0C0;
+}
+.medailleBronze{
+    color:#CD7F32;
+}
+.points{
+    color:#4CAF50;
+}
+.goals{
+    color:#ffffff;
+}
+.arrets{
+    color:#dc3545;
+}
+.hdv{
+    color:#e67e22;
+}
+.etoiles{
+    color:#dcdcdc;
+}
+.destruction{
+    color:#ff4c4c;
+}
+.points,
+.medailleArgent,
+.medailleBronze,
+.medailleOr,
+.brain,
+.moneyButton,
+.orderBy,
+.kills,
+.deaths,
+.assists,
+.mvp,
+.goals,
+.arrets,
+.hdv,
+.etoiles,
+.destruction{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1vh;
+    height: 100%;
+    width: 15vh;
+}
+.points:hover,
+.medailleArgent:hover,
+.medailleBronze:hover,
+.medailleOr:hover,
+.brain:hover,
+.moneyButton:hover,
+.orderBy:hover,
+.kills:hover,
+.assists:hover,
+.deaths:hover,
+.mvp:hover,
+.goals:hover,
+.arrets:hover,
+.hdv:hover,
+.etoiles:hover,
+.destruction:hover,
+.selected{
+    background-color: rgb(77, 77, 77);
+}
+
+/*-----------------------General Statistique-----------------------*/
+
+
+
+.PlayerStatistique{
+    border-top:ridge;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.PlayerStatistique td{
+    text-align: center;
+}
+.PlayerStatistique table{
+    margin-bottom: 1vh;
+}
+.PlayerStatistique p{
+    padding-top: 3vh;
+    margin-bottom: -.01vh;
+}
+.medailleSeparation{
+    border-bottom: ridge;
+    border-radius: 1vh;
+    padding-bottom: 1rem;
+    width: 80%;
+}
+.money{
+    color: green;
+}
+
+/*-----------------------Clash Of Clan-----------------------*/
+
+.clashOfClanChildDiv{
+    width: 100%;
+    display: flex;
+    border-top: ridge;
+}
+.clashOfClanChildDiv h4{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 15%;
+}
+.ClashOfClanPic{
+    width: 15%;
+    height: 100%;
+}
+.clashOfClanPlayerStats{
+    width: 70%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-right: ridge;
+    border-left: ridge;
+}
+.clashOfClanPlayerStats table,
+.clashOfClanPlayerStats p{
+    padding-left: 10vh;
+}
+.clashOfClanPlayerStats td{
+    text-align: center;
+    width: 5vh;
+}
+.clashOfClanHdv{
+    display: flex;
+}
+
+.clashOfClanSwords {
+    width: 4vh;
+    height: 4vh;
+}
+
+/*-----------------------Overwatch 2-----------------------*/
+
+.overwatchChildDiv{
+    width: 100%;
+    display: flex;
+    border-top:ridge;
+}
+.overwatchChildDiv h4{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+}
+.overwatchChildDiv img{
+    height: 100%;
+    width: 15%;
+}
+.overwatchPlayerStats{
+    width: 70%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-left:ridge;
+    border-right: ridge;
+}
+.overwatchPlayerStats table,
+.overwatchPlayerStats p{
+    padding-left: 10vh;
+}
+.overwatchPlayerStats td{
+    width: 15vh;
+    text-align: center;
+}
+.kills{
+    color: #F44336;
+}
+.assists{
+    color:#4CAF50;
+}
+.deaths{
+    color: #9E9E9E;
+}
+.mvp{
+    color: #FFD700;
+}
+
+/*-----------------------Rocket League-----------------------*/
+.rocketLeagueChildDiv{
+    width: 100%;
+    display: flex;
+    border-top:ridge;
+}
+.rocketLeagueChildDiv img{
+    height: 100%;
+    width: 15%;
+}
+.rocketLeagueChildDiv h4{
+    width: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rocketLeaguePlayerStats{
+    width: 70%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-left:ridge;
+    border-right: ridge;
+}
+
+.rocketLeaguePlayerStats td{
+    text-align: center;
+    width: 15vh;
+}
+.rocketLeaguePlayerStats table,
+.rocketLeaguePlayerStats p{
+    padding-left: 10vh;
+}
+

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Header from "../Header";
 import '../CSS/UserPage.css'
 import { FaEyeSlash } from "react-icons/fa";
@@ -6,10 +6,14 @@ import { FaEye } from "react-icons/fa";
 import { GiMoneyStack } from "react-icons/gi";
 import { useNavigate } from "react-router-dom";
 import { GetAllPlayers, Promotion, Demotion } from "../../Controller/APICall";
+import { Alert } from "../AlertComponent/Alert";
 
+//TODO bug que quand je me déconnecte, l'icon ne s'update pas
 export default function UserProfile(){
     const [hidePassword, setHidePassword] = useState(true)
     const [informationGeneral, setInformationGeneral] = useState(true)
+    const [showAlert, setShowAlert] = useState(false)
+    const [alertType, setAlertType] = useState("");
     const refInfo = useRef(null);
     const refStats = useRef(null);
     const refUsers = useRef(null);
@@ -53,6 +57,7 @@ export default function UserProfile(){
     return(
         <div className="maxPage">
             <Header/>
+            
             <div className="underHeader">
                 <div className="leftDiv">
                         <div ref={refInfo} className="leftDivButton" style={{backgroundColor:'#737373'}} onClick={() => handleInformationGeneral()}>Informations Générales</div>
@@ -109,58 +114,90 @@ export default function UserProfile(){
                     ):informationGeneral === false ? (
                         <h1>Faire une function statistique</h1>
                     ): (
-                        <Users/>
+                        <Users alertType={setAlertType} show={setShowAlert}/>
                     )}
+                    
                 </div>
             </div>
+            <Alert type={alertType} show={showAlert} close={setShowAlert}/>
         </div>
     )
 }
 
-function Users(){
+function Users({alertType, show}){
+    const [users, setUsers] = useState();
     const allUsers = GetAllPlayers();
 
+    useEffect(() => {
+        setUsers(allUsers)
+    },[allUsers])
+
+
+    const OperationError = () => {
+        alertType("error")
+        show(true)
+    }
+
+    const OperationSuccess = () => {
+        alertType("success")
+        show(true)
+    }
+
     const HandlePromotion = async (e) =>{
-        console.log(e)
-        if(e.perms !== "ADMIN"){
-            const username = e.username;
-            const success = await Promotion(username)
-            console.log(success)
+        if(e.perms === "MEMBER"){
+            if(await Promotion(e.username)){
+                OperationSuccess();
+                changeUserPerms(e.username,"ADMIN")
+            }
         }else{
-            console.log("can't")
+            OperationError()
         }
     }
 
     const handleDemotion = async (e) =>{
-        console.log(e)
-        if(e.perms !== "MEMBER"){
+        if(e.perms === "ADMIN"){
             const success = await Demotion(e.username)
             console.log(success)
+            if(await Demotion(e.username)){
+                OperationSuccess();
+                changeUserPerms(e.username, "MEMBER")
+            }
         }else{
-            console.log("can")
+            OperationError();
         }
     }
-    //TODO bug que la valeur afficher ne s,update pas (normal et que si on recliques sur le boutons, ça ne prends pas la nouvelle valeurs qui est quand même assez normal)
-    //TODO afficher une alert custom qui montre si j'ai réussi ou non à faire ma promotion ou ma demotion
-    return(
-        <div className="allUsersMotherdiv">
-            {allUsers.map((_) => (
-                <div className="allUsersdiv" key={_.username}>
-                    
-                    <table className="allUserstable">
-                        <tbody>
-                            <tr className="allUserstd">
-                                <td className="allUserstd">{_.username}</td>
-                                <td className="allUserstd">{_.perms}</td>
-                                <td className="allUserstd allUsersButtons" >
-                                    <div className="button" onClick={() => HandlePromotion(_)}>Promotion</div>
-                                    <div className="button" onClick={() => handleDemotion(_)}>Rétrograder</div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            ))}
-        </div>
-    )
+
+    //Allow the user to see the change in the perms on the website without having to reload the page
+    const changeUserPerms = (username,newPerms) => {
+        const newAllUsers = allUsers.map((user) => {
+            if(user.username === username){
+                return {...user, perms:newPerms}
+            }else{
+                return user;
+            }
+        })
+        setUsers(newAllUsers)
+    }
+
+    if(users) //to be sure we have something to show
+        return(
+            <div className="allUsersMotherdiv">
+                {users.map((_) => (
+                    <div className="allUsersdiv" key={_.username}>
+                        <table className="allUserstable">
+                            <tbody>
+                                <tr className="allUserstd">
+                                    <td className="allUserstd">{_.username}</td>
+                                    <td className="allUserstd">{_.perms}</td>
+                                    <td className="allUserstd allUsersButtons" >
+                                        <div className="button" onClick={() => HandlePromotion(_)}>Promotion</div>
+                                        <div className="button" onClick={() => handleDemotion(_)}>Rétrograder</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                ))}
+            </div>
+        )
 }
