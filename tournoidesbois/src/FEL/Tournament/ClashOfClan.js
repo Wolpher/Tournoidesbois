@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { HaveTournament } from "../../Controller/APICall";
 import { AlreadyHaveTournament, FormTournament } from "./TournamentMainPage";
+import TournamentCreation from "./TournamentCreation";
 import '../CSS/Tournament.css'
 
 function RightDivClashOfClan() {
@@ -30,7 +31,9 @@ function RightDivClashOfClan() {
 
 function CenterDivClashOfClan(){
     return(
-        <h1>HIHIHIHA</h1>
+        <>
+            <TournamentCreation/>
+        </>
     )
 }
 export {RightDivClashOfClan, CenterDivClashOfClan}

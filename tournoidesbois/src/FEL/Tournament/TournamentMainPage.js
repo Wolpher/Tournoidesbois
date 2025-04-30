@@ -4,7 +4,6 @@ import {RightDivClashRoyale, CenterDivClashRoyale} from "./ClashRoyale";
 import {RightDivOverwatch2, CenterDivOverwatch2} from "./Overwatch";
 import {RightDivRocketLeague, CenterDivRocketLeague} from "./RocketLeague";
 import {RightDivMinecraft, CenterDivMinecraft} from "./Minecraft";
-import TournamentCreation from "../../Controller/TournamentCreation";
 import '../CSS/Tournament.css'
 import '../CSS/Main.css'
 import { FcInfo } from "react-icons/fc";
@@ -13,25 +12,24 @@ import Header from "../Header";
 import { Icon } from '@iconify-icon/react';
 
 function TournamentMainPage(){
-    //TODO LIST (will probably add stuff later):
+    //TODO LIST:
     // quand j'appuie ou je hover sur un icon, surement essayer de voir si je peux faire en sorte que la bordure de droite ce regroupe sur un point pour faire une genre de flèche pour un meilleur visuel (aucune idée)
     // dans le left div, essayer de voir si je peux rendre la grander des images et la hauteur des images (dans les icons) en vh ou en %, ect, mais pas en pixel car ça cause des prob juste en ouvrant la console (aucune idée)
-    // -------> refaire le backend pour les formulaires pour les différents jeux (difficile)
     // faire un bon frontend pour pour leftDiv,centerDiv,rightDiv (moyen) (c'est legit en casi permanence cette affaire là)
     // quand je créé le bracket, avoir une confirmation s'il y a au moins 1 équipe qui n'a pas le même nombre de joueur qu'une autre (facile)
-    // change the allPlayer to a dto in the backend (facile)
     // à la toute fin, regarder ce que je n'utilise pas dans le css (facile mais ultra chiant)
     // ajouter une alerte lorsqu'on créé le tournoi si on a réussi à le faire ou non (facile)
+    // quand tu preview le bracket, quand tu appuie sur le bouton pour le créé, s'il y a des users avec le même nom dans la même teams ou dans des teams différentes s'il y a des endroit null, envoit un message d'erreur (facile)
     //---------------------------ClashOfClan-------------------------------
     // faire un algo qui créé le bracket pour clash of clan (difficile)
     // quand je créé mon tournoi, avoir un preview du bracket (moyen)
-    // dans le preview de mon bracket, avoir le choix de faire les teams aléatoirements ou manuellement (moyen) en vrai le mettre dans le formulaire en dessous de nb joueurs/équipe. avoir un choix entre un bouton aléatoire ou non
+    // dans le preview de mon bracket, avoir le choix de faire les teams aléatoirements ou manuellement (moyen) en vrai le mettre dans le formulaire en dessous de nb joueurs/équipe. avoir un choix entre un bouton aléatoire ou non (en vrai peut-être quelque chose pour toogle?) (ultra giga difficile)
     // dans le preview de mon bracket, avoir un bouton save tournament pour pouvoir le save et créé le tournoi et besoin d'avoir une confirmation comme quelque chose qui pop dans ton écran: veux-tu vraiment sauvegarder le tournoi (difficle)
     // faire un bon frontend (moyen)
     //---------------------------Clash Royale-------------------------------
     // faire un algo qui créé le bracket pour clash royale (très très difficile) (à cause des 2 phases)
     // quand je créé mon tournoi, avoir un preview du bracket (moyen)
-    // dans le preview de mon bracket, avoir le choix de faire les teams aléatoirements ou manuellement (moyen) en vrai le mettre dans le formulaire en dessous de nb joueurs/équipe. avoir un choix entre un bouton aléatoire ou non
+    // dans le preview de mon bracket, avoir le choix de faire les teams aléatoirements ou manuellement (moyen) en vrai le mettre dans le formulaire en dessous de nb joueurs/équipe. avoir un choix entre un bouton aléatoire ou non(en vrai peut-être quelque chose pour toogle?) (ultra giga difficile)
     // dans le preview de mon bracket, avoir un bouton save tournament pour pouvoir le save et créé le tournoi et besoin d'avoir une confirmation comme quelque chose qui pop dans ton écran: veux-tu vraiment sauvegarder le tournoi (difficle)
     // faire un bon frontend (moyen)
     // sur le center div, ajouter une façon de switch entre phase 1 et phase 2 (facile)
@@ -39,13 +37,13 @@ function TournamentMainPage(){
     //---------------------------Overwatch2------------------------------------------
     // faire un algo qui créé le bracket pour overwatch 2 (difficile)
     // quand je créé mon tournoi, avoir un preview du bracket (moyen)
-    // dans le preview de mon bracket, avoir le choix de faire les teams aléatoirements ou manuellement (moyen) en vrai le mettre dans le formulaire en dessous de nb joueurs/équipe. avoir un choix entre un bouton aléatoire ou non
+    // dans le preview de mon bracket, avoir le choix de faire les teams aléatoirements ou manuellement (moyen) en vrai le mettre dans le formulaire en dessous de nb joueurs/équipe. avoir un choix entre un bouton aléatoire ou non(en vrai peut-être quelque chose pour toogle?) (ultra giga difficile)
     // dans le preview de mon bracket, avoir un bouton save tournament pour pouvoir le save et créé le tournoi et besoin d'avoir une confirmation comme quelque chose qui pop dans ton écran: veux-tu vraiment sauvegarder le tournoi (difficle)
     // faire un bon frontend (moyen)
     //---------------------------Rocket League------------------------------------------
     // faire un algo qui créé le bracket pour rocket league (très difficile)
     // quand je créé mon tournoi, avoir un preview du bracket (moyen)
-    // dans le preview de mon bracket, avoir le choix de faire les teams aléatoirements ou manuellement (moyen) en vrai le mettre dans le formulaire en dessous de nb joueurs/équipe. avoir un choix entre un bouton aléatoire ou non
+    // dans le preview de mon bracket, avoir le choix de faire les teams aléatoirements ou manuellement (moyen) en vrai le mettre dans le formulaire en dessous de nb joueurs/équipe. avoir un choix entre un bouton aléatoire ou non (en vrai peut-être quelque chose pour toogle?) (ultra giga difficile)
     // dans le preview de mon bracket, avoir un bouton save tournament pour pouvoir le save et créé le tournoi et besoin d'avoir une confirmation comme quelque chose qui pop dans ton écran: veux-tu vraiment sauvegarder le tournoi (difficle)
     // faire un bon frontend (moyen)
     // quand j'appuie sur une équipe du bracket afficher quelque chose qui montre les joueurs (difficile)
@@ -53,7 +51,7 @@ function TournamentMainPage(){
     // faire un algo qui créé le bracket pour  minecraft (très très difficile) (à cause des 2 phases)
     // quand je créé mon tournoi, avoir un preview du bracket (moyen)
     // dans le preview de mon bracket, avoir un bouton save tournament pour pouvoir le save et créé le tournoi et besoin d'avoir une confirmation comme quelque chose qui pop dans ton écran: veux-tu vraiment sauvegarder le tournoi (difficle)
-    // dans le preview de mon bracket, avoir le choix de faire les teams aléatoirements ou manuellement (moyen) en vrai le mettre dans le formulaire en dessous de nb joueurs/équipe. avoir un choix entre un bouton aléatoire ou non
+    // dans le preview de mon bracket, avoir le choix de faire les teams aléatoirements ou manuellement (moyen) en vrai le mettre dans le formulaire en dessous de nb joueurs/équipe. avoir un choix entre un bouton aléatoire ou non (en vrai peut-être quelque chose pour toogle?) (ultra giga difficile)
     // faire un bon frontend (moyen)
     // sur le center div, ajouter une façon de switch entre phase 1 et phase 2 (facile)
     // quand j'appuie sur une équipe du bracket afficher quelque chose qui montre les joueurs (difficile)
@@ -170,7 +168,6 @@ function TournamentMainPage(){
             <div ref={ref} className="tournamentDisplay centerdiv " onMouseDown={(e) => onMouseDown(e)} >
                 <div className="testrealquick">
                     {centerDivSwitch()}
-                {/**<TournamentCreation  gameTitle={"Clash of clan"}/>*/}
                 </div>
             </div>
             <div className="rightdiv">
@@ -195,130 +192,56 @@ const FormTournament = ({gameTitle, forma, duree}) =>{
     const [nbEquipe, setNbEquipe] = useState(2);
     const [nbJoueur, setNbJoueur] = useState(1);
 
-    const [teamPlayer, setTeamPlayer] = useState([])
-    const [teamName, setTeamName] = useState();
-    const [teams,setTeams] = useState([])
-
-    //juste pour faire des test mais au final ça work so...
+    const teams = useRef([{
+        teamName:"",
+        members:[
+            ""
+        ]
+    }])
     const tournament = useRef({
-            nbEquipe: nbEquipe,
-            nbUserPerTeam: nbJoueur,
-            teams:[]
+            nbEquipe: 0,
+            nbUserPerTeam: 0,
+            teams:[{
+                teamName:"",
+                members:[
+                    ""
+                ]
+            }]
     })
-
-    const teamIndexFound = useRef(false)
     const allPlayers = GetAllPlayers()
-
+    
     const handleInfoTournoiSubmit = () => {
         setNext(true)
     }
 
+    const handleAddTeamsName = ({teamId, teamName}) => {
+        if(teams.current[teamId]=== undefined){
+            teams.current[teamId] = {teamName:teamName, members:[""]}
+        }else{
+            teams.current[teamId] = {teamName:teamName, members:teams.current[teamId].members}
+        }
+    }
+
     const handleInfoTournoiNextSubmit = (e) =>{
         e.preventDefault();
-       const sortteamPlayer = teamPlayer.sort((a,b) => a.teamId>b.teamId ? 1:-1)  //sort the list of player
-
-       const newTeams = teams.map((team) => {
-        const player = sortteamPlayer.map((player) => {
-            if(team.id === player.teamId){
-                return {...player}
-            }
-        }).filter(Boolean) //take out all the undefined
-        console.log("Players:")
-        console.log(player)
-
-        const playerUsernameOnly = player.map((player) => { //I don't want any other information than the username of the player because the other information is useless
-            return player.username
-        })
-
-        console.log(playerUsernameOnly)
-        return {...team, members:playerUsernameOnly}
-       })
-       console.log(newTeams)
-       tournament.current.teams = newTeams
-       console.log(JSON.stringify(tournament.current))
-       CreateTournament({gameTitle:gameTitle,tournament:tournament.current}) //still fuck up at the create but need just to clean my code because now that's ugly af
+        tournament.current.nbEquipe = nbEquipe;
+        tournament.current.nbUserPerTeam = nbJoueur;
+        tournament.current.teams = teams.current; //add the teams to the tournament
+        CreateTournament({gameTitle:gameTitle, tournament:tournament.current})
     }
 
-    const handleTeamName = (e) =>{
-        setTeamName(e)
-    }
-    const handleAddPlayerToTeam = ({e,teamId, playerId}) => { //work but need to check if I can change it later when everything will be done, there is way to many if/else and need to change everything
-        let playerFound = false;
-        let temp = false;
-        
-        const newTeamPlayer = teamPlayer.map((player) => {
-            if(player.username === e){ //the player already exist in the list
-                playerFound = true;
-                if(player.teamId !== teamId){ //check if the player is on a different team
-                    const newPlayers = deletePlayer({teamPlayer:teamPlayer,teamId:teamId, playerId:playerId})
-                    const newPlayers2 = newPlayers.map((player) => {
-                        if(player.username === e){
-                            return{...player, teamId:teamId}
-                        }else{
-                            return player
-                        }
-                    })
-                    setTeamPlayer(newPlayers2)
-                    temp=true
-                }else{
-                    if(player.playerId !== playerId){  //check if the player is already on the team but have a different playerId
-                        const newPlayers = deletePlayer({teamPlayer:teamPlayer,teamId:teamId, playerId:playerId})
-                        const newPlayers2 = newPlayers.map((player) => {
-                            if(player.username === e){
-                                return {...player, playerId:playerId}
-                            }else{
-                                return player
-                            }
-                        })
-                        setTeamPlayer(newPlayers2)
-                        temp=true;
-                        
-                    }
-                }
-            }else{
-                return player
-            }
-        })
-        if(!playerFound){ //check if a player is in the list if not add it
-            setTeamPlayer([...teamPlayer, {teamId:teamId,playerId: playerId,username:e}])
-        }else{
-            if(!temp){
-                setTeamPlayer(newTeamPlayer)
-            }
+    const handleAddPlayerToTeam = ({playerName,teamId, playerId}) => {
+        //kind of meh but will do the job
+        if(teams.current[teamId] === undefined){ //check if the team exist already in the array. if not, create it
+            teams.current[teamId] = {teamName:"", members:[""]}
         }
-    }
-
-    const deletePlayer = ({teamPlayer,teamId, playerId}) => { // work but THATS IS TOTALLY FUCK UP (faaax)
-         return teamPlayer.filter(player => !(player.teamId === teamId && player.playerId === playerId) )
-    }
-
-
-    //need to verify if they have the same name or not but will check this later
-    const createTeams = (index) => { //work but seem kind of trash to me
-        const newTeams = teams.map((item) => {
-            if(item.id === index){
-                teamIndexFound.current = true
-                return {...item, id:index, teamName :teamName}
-            }else{
-                return item
-            }
-        })
-        if(teamIndexFound.current === false){
-            setTeams([
-                ...teams,
-                {id:index, teamName:teamName}
-            ])
-        }else{
-            setTeams(newTeams)
-            teamIndexFound.current = false
+        if(teams.current[teamId].teamName === ""){ //check if there is already a name for the team, is not add a default one
+            teams.current[teamId].teamName = "Équipe " + teamId +1; //seems kind of weird to me to see Equipe 0 
         }
+        teams.current[teamId].members[playerId] = playerName; //add the player in the team at a specified index
         
+    }
 
-    }
-    const bigTesting = () =>{
-        console.log(teams)
-        console.log(teamPlayer)
-    }
     const InfoTournoi = () => {
         return(
             <div className="divFormTournament">
@@ -358,31 +281,7 @@ const FormTournament = ({gameTitle, forma, duree}) =>{
         }else{
             maxLoopNumber = nbJoueur/2 + 0.5
         }
-        /**maybe change later to something better but for now thats good enough need to see if I can change it when I am at the point of doing the frontend*/
-        /*const test = new Array(nbEquipe).fill(null).map((_,index) => (
-            <div className="test" key={index}>
-                <h1>Équipe {index + 1 }</h1>
-                <label>name:</label>
-                <input type="text" onChange={(e) => handleTeamName(e.target.value)}/>
-                <input onChange={() => createTeams(index)}/>
-                <br/>
-                <h3>Select your players</h3>
-                {new Array(nbJoueur).fill(null).map((_,playerIndex) => (
-                    <>
-                        <select name="players" key={playerIndex} id="player-select" form="infoTournament" onChange={(e) => handleAddPlayerToTeam({e:e.target.value,teamId:index, playerId:playerIndex})}>
-                            <option value="">Choose your player</option>
-                            {allPlayers.map((player,index) => {
-                                return <option key={index} name={player}>{player.username}</option>
-                            })}
-                        </select>
-                        <input onChange={() => bigTesting()}/>
-                    </>
-                    
-                ))}
-            </div>
-            
-        ))*/
-       //quand je fais les teams, je dois rajouter une protection contre les joeurs dupliqué dans chaque teams et les noms d'équipes duppliqué
+
         return(
             <>
                 <form className="nextFormTournament" id="infoTournament" onSubmit={(e) => handleInfoTournoiNextSubmit(e)}>
@@ -395,18 +294,18 @@ const FormTournament = ({gameTitle, forma, duree}) =>{
                                     </tr>
                                     <tr className="equipeTr">
                                         <td>Nom d'équipe:</td>
-                                        <td><input className="tdInput" type="text"/></td>
+                                        <td><input className="tdInput" type="text" onChange={(txt) => handleAddTeamsName({teamId:index, teamName:txt.target.value})}/></td>
                                     </tr>
                                     <tr>
                                         <th className="joueursTd" colSpan={2}>Joueurs:</th>
                                     </tr>
-                                    {new Array(maxLoopNumber).fill(null).map((nb,_) => (
-                                        <tr key={"a " +_}>
+                                    {new Array(maxLoopNumber).fill(null).map((nb,trIndex) => (
+                                        <tr key={"tr" +trIndex}>
                                             { nbJoueur%2 ===0 || _+1 !== maxLoopNumber ? (
                                                 <>
                                                     {new Array(2).fill(null).map((_,playerIndex) => (
                                                         <td key={playerIndex}>
-                                                            <select form="infoTournament" onChange={(e) => handleAddPlayerToTeam({e:e.target.value, teamId:index, playerId:playerIndex})}>
+                                                            <select form="infoTournament" onChange={(playerName) => handleAddPlayerToTeam({playerName:playerName.target.value, teamId:index, playerId:trIndex*2+playerIndex})}>
                                                                 <option value=""> Choisi un joueur</option>
                                                                 {allPlayers.map((player,index) => {
                                                                     return <option key={index} name={player}>{player.username}</option>
@@ -415,24 +314,18 @@ const FormTournament = ({gameTitle, forma, duree}) =>{
                                                         </td>
                                                     ) )}
                                                 </>
-                                            ): (
-                                                <>
-                                                {new Array(1).fill(null).map((_) => (
-                                                    <td key={"b" + nbJoueur/2+0.5} colSpan={2}>
-                                                        <select form="infoTournament" onChange={(e) => handleAddPlayerToTeam({e:e.target.value, teamId:index, playerId:nbJoueur/2+0.5})}>
-                                                                <option value=""> Choisi un joueur</option>
-                                                                {allPlayers.map((player,index) => {
-                                                                    return <option key={index} name={player}>{player.username}</option>
-                                                                })}
-                                                            </select>
-                                                    </td>
-                                                ))}
-                                                </>
+                                            ):(
+                                                <td colSpan={2}>
+                                                    <select form="infoTournament" onChange={(playerName) => handleAddPlayerToTeam({playerName:playerName.target.value, teamId:index, playerId:trIndex*2})}>
+                                                            <option value=""> Choisi un joueur</option>
+                                                            {allPlayers.map((player,index) => {
+                                                                return <option key={index} name={player}>{player.username}</option>
+                                                            })}
+                                                        </select>
+                                                </td>
                                             )}
                                         </tr>
                                     ))}
-                                    <tr>
-                                    </tr>
                                 </tbody>
                             </table>
                         
