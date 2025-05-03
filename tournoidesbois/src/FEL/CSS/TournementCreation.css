@@ -1,0 +1,35 @@
+/*----------------------------------FORMA TWO OF THREE----------------------------------------*/
+.tournament{
+}
+.gameDisplay{
+    font-size: 1.5rem;
+}
+.teamsDisplay{
+    display: flex;  
+}
+.singleTeamDisplay{
+    background-color: #3d4351;
+}
+.teamNameDisplay{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: solid;
+    width: 20vh;
+    height: 5vh;
+}
+.membersDisplay{
+    height: 5vh;
+    width: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: solid;
+    border-right: solid;
+    border-left: solid;
+}
+.vs{
+    width: 25vh;
+    margin: auto;
+    font-size: 20vh;
+}

@@ -24,14 +24,16 @@
     flex-direction: column;
     align-items: center;
 }
-.testrealquick{
-    background-color: #3d4351;
-}
 .centerdiv{
     height: 100%;
     width: 77%;
     margin-top: 5vh; /*because of the header */
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
     background-color: #303540;
+    
     /*rgb(184, 184, 184);*/
     overflow-x:scroll;
 }

@@ -13,6 +13,7 @@ import { Icon } from '@iconify-icon/react';
 
 function TournamentMainPage(){
     //TODO LIST:
+    // pour voir le div droit être un admin (facile)
     // quand j'appuie ou je hover sur un icon, surement essayer de voir si je peux faire en sorte que la bordure de droite ce regroupe sur un point pour faire une genre de flèche pour un meilleur visuel (aucune idée)
     // dans le left div, essayer de voir si je peux rendre la grander des images et la hauteur des images (dans les icons) en vh ou en %, ect, mais pas en pixel car ça cause des prob juste en ouvrant la console (aucune idée)
     // faire un bon frontend pour pour leftDiv,centerDiv,rightDiv (moyen) (c'est legit en casi permanence cette affaire là)
@@ -21,7 +22,7 @@ function TournamentMainPage(){
     // ajouter une alerte lorsqu'on créé le tournoi si on a réussi à le faire ou non (facile)
     // quand tu preview le bracket, quand tu appuie sur le bouton pour le créé, s'il y a des users avec le même nom dans la même teams ou dans des teams différentes s'il y a des endroit null, envoit un message d'erreur (facile)
     //---------------------------ClashOfClan-------------------------------
-    // faire un algo qui créé le bracket pour clash of clan (difficile)
+    // ------->faire un algo qui créé le bracket pour clash of clan (difficile)
     // quand je créé mon tournoi, avoir un preview du bracket (moyen)
     // dans le preview de mon bracket, avoir le choix de faire les teams aléatoirements ou manuellement (moyen) en vrai le mettre dans le formulaire en dessous de nb joueurs/équipe. avoir un choix entre un bouton aléatoire ou non (en vrai peut-être quelque chose pour toogle?) (ultra giga difficile)
     // dans le preview de mon bracket, avoir un bouton save tournament pour pouvoir le save et créé le tournoi et besoin d'avoir une confirmation comme quelque chose qui pop dans ton écran: veux-tu vraiment sauvegarder le tournoi (difficle)
@@ -60,7 +61,6 @@ function TournamentMainPage(){
     // dans les tournoi avoir un endroit pour attribuer son vote (ne peux pas voter pour son équipe) (moyen)
     // peux être montrer un timer au dessus pour la durée du tournoi? (facile)
     const [game, setGame] = useState('')
-   
     const [lastGameRef, setLastGameRef] = useState(null)
     const refClashOfClan = useRef(null)
     const refClashRoyale = useRef(null)
@@ -107,7 +107,7 @@ function TournamentMainPage(){
     const centerDivSwitch = () => {
         switch(game){
             case 'ClashOfClan':
-                return <CenterDivClashOfClan />
+                return <CenterDivClashOfClan tournament=""/>
             case 'ClashRoyale':
                 return <CenterDivClashRoyale/>
             case 'Overwatch2':
@@ -166,9 +166,7 @@ function TournamentMainPage(){
                 <Icon ref={refMinecraft} className="icons" title="minecraft" icon="arcticons:minecraft" width={45} height={50} onClick={() => handleClick({game:"Minecraft", gameRef:refMinecraft.current})}/>
             </div>
             <div ref={ref} className="tournamentDisplay centerdiv " onMouseDown={(e) => onMouseDown(e)} >
-                <div className="testrealquick">
                     {centerDivSwitch()}
-                </div>
             </div>
             <div className="rightdiv">
                 {rightDivSwitch()}
@@ -331,7 +329,6 @@ const FormTournament = ({gameTitle, forma, duree}) =>{
                         
                     ))}
                     </div>
-                    {/*{test}*/}
                     <button type="submit">créer le tournoi</button>
                 </form>
             </>
