@@ -6,7 +6,7 @@ export default function TournamentCreation({tournament,forma}){
     
     return(
         <>
-            <FormaThwoOfThree nbEquipe={0} nbJoueur={0}/>
+            <FormaThwoOfThree nbEquipe={2} nbJoueur={5}/>
         </>
     )
 }
