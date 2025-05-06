@@ -6,6 +6,7 @@
     "react-scroll-ondrag": "^4.0.0"
   },
   "devDependencies": {
-    "@iconify-icon/react": "^2.3.0"
+    "@iconify-icon/react": "^2.3.0",
+    "@iconify/react": "^6.0.0"
   }
 }

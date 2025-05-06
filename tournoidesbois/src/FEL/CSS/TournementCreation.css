@@ -1,6 +1,4 @@
 /*----------------------------------FORMA TWO OF THREE----------------------------------------*/
-.tournament{
-}
 .gameDisplay{
     font-size: 1.5rem;
 }
@@ -15,12 +13,12 @@
     align-items: center;
     justify-content: center;
     border: solid;
-    width: 20vh;
+    width: 30vh;
     height: 5vh;
 }
 .membersDisplay{
     height: 5vh;
-    width: 20vh;
+    width: 30vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -32,4 +30,23 @@
     width: 25vh;
     margin: auto;
     font-size: 20vh;
+}
+.etoile{
+    border-left: solid;
+    border-right: solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25%;
+    height: 100%;
+}
+.destructions{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+    height: 100%;
+}
+.teamName{
+    width: 50%;
 }

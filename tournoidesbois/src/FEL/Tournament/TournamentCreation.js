@@ -1,4 +1,5 @@
 import React, {useRef} from "react";
+import { AiFillStar } from "react-icons/ai";
 import '../CSS/TournementCreation.css'
 
 export default function TournamentCreation({tournament,forma}){
@@ -71,7 +72,7 @@ function ClashOfClan({tournament}){
     const nbGame = new Array(1).fill(null);
     //est toujours une équipe pair
     return(
-    <div className="tournament">
+    <div>
         {nbGame.map((game,nbGame) => (
             <>
                 <p className="gameDisplay">Game: {nbGame + 1}/3</p>
@@ -81,9 +82,9 @@ function ClashOfClan({tournament}){
                     {/**table pour display les teams??? */}
                     <div className="singleTeamDisplay" key={index}>
                         <div className="teamNameDisplay">
-                            {team.teamName}
-                            <div>étoiles</div>
-                            <div>%</div>
+                            <p className="teamName">{team.teamName}</p>
+                            <div className="etoile"><AiFillStar/></div>
+                            <div className="destructions">%</div>
                         </div>
                         {team.members.map((member) => (
                             <div className="membersDisplay">{member}</div>
@@ -91,6 +92,7 @@ function ClashOfClan({tournament}){
                     </div>
                     {index ===0 ? (
                         <div className="vs">vs</div>
+                        
                     ):(
                         <>
                         </>
