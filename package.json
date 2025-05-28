@@ -1,5 +1,12 @@
 {
   "dependencies": {
-    "react-router-dom": "^7.0.2"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.4.0",
+    "react-scroll-ondrag": "^4.0.0"
+  },
+  "devDependencies": {
+    "@iconify-icon/react": "^2.3.0",
+    "@iconify/react": "^6.0.0"
   }
 }

@@ -1,0 +1,81 @@
+/*----------------------------------FORMA TWO OF THREE----------------------------------------*/
+.parentDiv{
+    height: 100%;
+}
+.Middle{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.gameDisplay{
+    font-size: 1.5rem;
+}
+.teamsDisplay{
+    display: flex;  
+}
+.singleTeamDisplay{
+    background-color: #3d4351;
+}
+.teamNameDisplay{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border:ridge ;
+    border-left: groove ;
+    border-top: groove ;
+    border-color: #888c99;
+    overflow-wrap: break-word;
+    width: 30vh;
+    height: 5vh;
+}
+.membersDisplay{
+    height: 5vh;
+    width: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: ridge ;
+    border-right: ridge ;
+    border-left: groove ;
+    border-color: #888c99;
+    overflow-wrap: break-word;
+}
+.swords{
+    width: 25vh;
+    margin: auto;
+    font-size: 20vh;
+    color: silver;
+}
+.etoile{
+    border-left: ridge ;
+    border-right: ridge ;
+    border-color: #888c99;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25%;
+    height: 100%;
+}
+.etoilesSpecs{
+    color:#dcdcdc;
+    width: 3vh;
+    height: 3vh;
+    margin-right: .3vh;
+}
+.destructions{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+    height: 100%;
+    margin-right: .3vh;
+}
+.nbEtoiles_Destructions{
+    width: 75%;
+    text-align: right;
+    margin-right: .2vh;
+}
+.teamName{
+    width: 75%;
+}

@@ -1,0 +1,130 @@
+.maxPage{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.underHeader{
+    margin-top:5vh;
+    width: 100%;
+    display: flex;
+    font-size: 2vh;
+}
+.leftDiv{
+    height:100%;
+    width:20%;
+    border: ridge;
+    border-bottom: none;
+    border-left: none;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #c8c3c3;
+}
+.rightDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    background-color: #ebe7e7;
+}
+.money{
+    color: green;
+}
+.tdButtonDeconnecter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    width: 15vh;
+    height: 3vh;
+    border-radius: 3vh;
+    border: outset black 2px;
+    background-color: rgba(255, 0, 0, 0.653);
+}
+.leftDivButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    width: 95%;
+    height: 3vh;
+    border-radius: 3vh;
+    border: outset black 2px;
+    margin-top:1vh;
+    margin-bottom: 1vh;
+}
+.infoGeneralTable{
+    width: 25%;
+    height: 50%;
+    border: ridge;
+    table-layout: fixed;
+    background-color: #a1a1a16a;
+}
+.allUsersMotherdiv{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: auto;
+}
+.allUsersdiv{
+    border:solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    margin: 1vh;
+    border:ridge;
+    height: 10%;
+    border-radius: 1vh;
+}
+.allUserstable{
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    height: 100%;
+}
+.allUsersButtons{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.allUsersButtons .button{
+    flex:1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.allUsersButtons .button:first-child{
+    background-color: rgba(0, 128, 0, 0.603);
+    border-top-right-radius: 1vh;
+
+}
+.allUsersButtons .button:last-child{
+    background-color: rgba(255, 0, 0, 0.546);
+    border-bottom-right-radius: 1vh;
+    border-top: solid .3vh rgba(0, 0, 0, 0.469);
+}
+.allUsersButtons .button:first-child:hover{
+    background-color: green;
+}
+.allUsersButtons .button:last-child:hover{
+    background-color: red;
+}
+.allUserstd{
+    border-right: solid .3vh hsla(0, 0%, 0%, 0.469);
+    text-align: center;
+    vertical-align: middle;
+    height: 100%;
+}
+.allUserstd:last-child{
+    border-right: none;
+}
+.tdButtonDeconnecter:hover, .leftDivButton:hover{
+ border:inset black 2px
+}
+
+
