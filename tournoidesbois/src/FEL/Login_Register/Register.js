@@ -61,13 +61,6 @@ export default function Register(){
                     <input type="text" id="password" onChange={e=>setPassword(e.target.value)} value={password}/>
                 </div>
                 <button type="submit">Submit</button>
-                { responseData === null ? (
-                    <div className="contenerValidation"/>
-                ) : responseData === true ?(
-                    validation()
-                ) : (
-                    notValidate()
-                )}
             </form>
             </div>
         </div>

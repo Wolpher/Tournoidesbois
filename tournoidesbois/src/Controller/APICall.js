@@ -156,6 +156,25 @@ function AddHistorique({historique}){
         }
         AddHistorique()
 }
+
+function GetHistorique({gameTitle}){
+    const [historique, setHistorique] = useState();
+    useEffect(() => {
+        const GetHistorique = async () => {
+        const response = await fetch(`http://localhost:8083/getHistorique?gameTitle=${gameTitle}`,{
+            method:"GET",
+            headers:{
+                'Content-Type':'application/json'
+            }
+        })
+        const responseData = await response.json()
+        setHistorique(responseData)
+    }
+    GetHistorique();
+    },[gameTitle])
+    
+    return historique;
+}
 export{
     PostUser,
     getUser,
@@ -166,5 +185,6 @@ export{
     Promotion,
     Demotion,
     GetAllPlayersSpecificTournament,
-    AddHistorique
+    AddHistorique,
+    GetHistorique
 }

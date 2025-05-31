@@ -9,11 +9,11 @@ import CR from '../img/clashroyale.png'
 import {GetAllPlayersSpecificTournament } from "../../Controller/APICall";
 import { GiMoneyStack } from "react-icons/gi";
 import { FaSortNumericDownAlt, FaSortNumericUpAlt, FaBrain, FaAward, FaChartLine, FaSkull, FaHandsHelping, FaCrown, FaCrosshairs, FaFutbol, FaBan} from "react-icons/fa";
-import { GiCastle, GiBrightExplosion } from "react-icons/gi";
+import { GiCastle, GiBrightExplosion, GiStoneTower } from "react-icons/gi";
 import { AiFillStar } from "react-icons/ai";
+import {SiElixir} from "react-icons/si";
 
 //faire minecraft
-//faire clash Royale
 //ajouter quelque chose proche de la souris quand tu hover les icons pour dire exactements c'est quoi
 // rajouter quelque chose quand les données sont entrain de load
 //peut-être rajouter quelque chose en relation des différentes phases dans chaque jeux?
@@ -21,6 +21,8 @@ import { AiFillStar } from "react-icons/ai";
 //Pour la recherche de nom, si tu as un jeu de sélectionner et la personnes n'a pas participé à ce jeu, dois montrer quelque chose
 //show something for each situation available (noPlayers, noPlayer with those character, ect, ect)
 //à la place des photos de jeux, mettre les photos de profile
+//l'UI de COC à changé et je ne sais pas pourquoi mais bon va falloir fix ça
+//pour le dernier joueur dans clash royale j,ai un bug au niveau de la bordure c'est assez weird à fix plus tard
 export default function Statistiques(){
     const [selectValue, setSelectValue] = useState("none");
     const [order, setOrder] = useState("ascending");
@@ -424,7 +426,6 @@ function StatistiqueOverwatch2({order, setOrder, recherchePlayer}){
                 orderByAlphabetical({allPlayers:allPlayers, setAllPlayersOrder:setAllPlayersOrder})
                 break;
             }
-        
     }
     
 
@@ -477,16 +478,19 @@ function StatistiqueClashRoyale({order, setOrder, recherchePlayer}){
     const [allPlayersOrder, setAllPlayersOrder] = useState([])
     const [showRecherchePlayers, setShowRecherchePlayers] = useState([])
     const [whatOrder, setWhatOrder] = useState("");
-
     const [lastRef, setLastRef] = useState(null);
-
+    
+    const refTower = useRef(null);
+    const refElixir = useRef(null);
     const allPlayers = GetAllPlayersSpecificTournament({gameTitle:"Clash Royale"})
-    console.log(allPlayers)
 
     useEffect(() => {
         orderByAlphabetical({allPlayers:allPlayers, setAllPlayersOrder:setAllPlayersOrder})
     },[allPlayers])
 
+    useEffect(() => {
+        orderByWhat({what:whatOrder})
+    },[order])
 
     useEffect(() => {
         if(allPlayersOrder.length !== 0){
@@ -499,6 +503,21 @@ function StatistiqueClashRoyale({order, setOrder, recherchePlayer}){
         setOrder(order)
     }
 
+    const orderByWhat = ({what}) => {
+        switch(what){
+            case "tower":
+                orderByCategorie({gameStats:"statsClashRoyales",stat:"nbToursDetruite",order:order, allPlayersOrder:allPlayersOrder, setAllPlayersOrder:setAllPlayersOrder});
+                break;
+            case "elixir":
+                orderByCategorie({gameStats:"statsClashRoyales",stat:"deckConsumption", order:order, allPlayersOrder:allPlayersOrder, setAllPlayersOrder:setAllPlayersOrder})
+                break;
+            default:
+                orderByAlphabetical({allPlayers:allPlayers, setAllPlayersOrder:setAllPlayersOrder})
+                break;
+            }
+        
+    }
+
     if(showRecherchePlayers.length === 0){
         return(
             NoPlayer()
@@ -507,6 +526,8 @@ function StatistiqueClashRoyale({order, setOrder, recherchePlayer}){
     return(
         <>
             <div className="GeneralAdvanceBar">
+                <div ref={refTower} title="Nombre de tours détruite" className="tower" onClick={() =>  ChangeWhatOrder({what:"tower",ref:refTower.current, lastRef:lastRef, setLastRef:setLastRef, setWhatOrder:setWhatOrder, orderByWhat:orderByWhat})}><GiStoneTower/></div>
+                <div ref={refElixir} title="consommation du deck" className="elixir" onClick={() =>  ChangeWhatOrder({what:"elixir",ref:refElixir.current, lastRef:lastRef, setLastRef:setLastRef, setWhatOrder:setWhatOrder, orderByWhat:orderByWhat})}><SiElixir/></div>
             {order === "ascending" ? (
                 <div title="ordre croissant" className="orderBy" onClick={() =>  changeOrder("descending")}><FaSortNumericUpAlt/></div>
             ): (
@@ -516,26 +537,27 @@ function StatistiqueClashRoyale({order, setOrder, recherchePlayer}){
             <div className="joueursSectionMainDiv">
                 {showRecherchePlayers.map((user,_) => (
                 <div key={_} style={{backgroundColor: GetBackgroundColor({win:user.statsClashRoyales.matchUpsInformation.win})}} className="clashRoyaleChildDiv" >
-                    {console.log(user.statsClashRoyales)}
                     <img src={CR}/>
                     <div className="clashRoyalePlayerStats">
                         <div className="clashRoyalePlayerInformation">
                             <p>username: {user.username}</p>
-                            <p>Nombre de tours détruire: {user.statsClashRoyales.nbToursDetruite}</p>
+                            <p>Nombre de tours détruite: {user.statsClashRoyales.nbToursDetruite}</p>
+                            <p>Consommation du deck: {user.statsClashRoyales.deckConsumption} <SiElixir style={{color:"rgb(245, 66, 227)"}}/></p>
                         </div>
                         <div className="clashRoyaleDeckDiv">
                             {user.statsClashRoyales.clashRoyaleDeck ? (
-                               <>
-                               
-                            {user.statsClashRoyales.clashRoyaleDeck.map((deckCard,_) => (
-                                <>
-                                    <img title={deckCard.iconName} src={deckCard.iconUrl}/>
-                                </>
-                                
-                            ))}
-                               </> 
+                                <div className="clashRoyaleChildDeckDiv">
+                                    {user.statsClashRoyales.clashRoyaleDeck.map((deckCard,_) => (
+                                        <div key={_} className="cardsDiv" style={_ === 7 ? ({borderRight:"groove"}) : ({borderRight:"ridge"})}>
+                                            <img title={deckCard.iconName} className="clashRoyaleDeckCards" src={deckCard.iconUrl}/>
+                                        </div>
+                                        
+                                    ))}
+                                </div>
                             ):(
-                                <h1>ça fait chier</h1>
+                                <div className="clashRoyaleChildDeckDiv">
+                                    <p>Ce joueur à aucun deck présentement</p>
+                                </div>
                             )}
                         </div>
                     </div>
@@ -608,7 +630,7 @@ const NoPlayer = () => { //show a msg in case there is no player participating i
 }
 
 function GetBackgroundColor({win}){
-    return win ? '#5CB660' : 'rgba(255,0,0,0.6)'
+    return win ? '#5CB660' : 'rgba(255, 0, 0, 0.48)'
 }
 
 const orderByUsername = ({a,b}) => {
@@ -640,7 +662,7 @@ const ChangeWhatOrder = ({what,ref, lastRef, setLastRef, setWhatOrder, orderByWh
             lastRef.classList.remove("selected")
             setLastRef(ref);
             ref.classList.add("selected")
-            orderByWhat({what:what}); //allow the order to be done when you clique on the button on the first time and not when you clique the div to change the order to ascending or descending
+            orderByWhat({what:what}); //allow the order to be done when you click on the button on the first time and not when you clique the div to change the order to ascending or descending
     }
 }
 
@@ -664,7 +686,7 @@ const orderByCategorie = ({gameStats,stat, order, allPlayersOrder, setAllPlayers
     }
 }
 
-const orderByMVP = ({gameStats,stat, order, allPlayersOrder, setAllPlayersOrder}) => { //pour l'instant c'est juste pour overwatch, mais je risque de devoir le faire pour des prochains jeux dans d'autre edition
+const orderByMVP = ({gameStats,stat, order, allPlayersOrder, setAllPlayersOrder}) => {
     console.log(allPlayersOrder)
     if(order === "ascending"){
         const newAllPlayersOrder = [...allPlayersOrder].sort((a,b) => {

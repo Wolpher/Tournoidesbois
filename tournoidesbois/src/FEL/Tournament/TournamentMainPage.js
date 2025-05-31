@@ -64,6 +64,9 @@ function TournamentMainPage(){
     // quand les tournoi sont créés et qu'on voit les brackets, avoir un boutons pour rentrez en phase update du tournoi et pouvoir changer le nom des équipes, les joueurs, ect (aucune idée)
     // dans les tournoi avoir un endroit pour attribuer son vote (ne peux pas voter pour son équipe) (moyen)
     // peux être montrer un timer au dessus pour la durée du tournoi? (facile)
+    // faire quelque chose pour modifier l'historique? au cas où j'ai fait une erreur (moyen)
+    // refaire l'endroit de preview des brackets. (montrer une alerte si les stats vont en dehors des valeurs possibles) (moyen)
+    // quand tu ajoutes à l'historique, changer le match pour aller au prochain (moyen)
     //-----------------------------------------------------------------------------------
     //BUG?:
     //création de tournoi je crois avoir mis 5, mais j'ai obtenu un total de 6 joueurs? (pas sûr de si j'ai fait une erreur ou non)

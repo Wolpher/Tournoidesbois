@@ -1,60 +1,66 @@
-import React, {useEffect, useRef} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import { AiFillStar } from "react-icons/ai";
 import '../CSS/TournementCreation.css'
 import { Icon } from "@iconify-icon/react/dist/iconify.mjs";
-import {GetTournament} from "../../Controller/APICall.js";
+import {GetHistorique, GetTournament} from "../../Controller/APICall.js";
 import '../CSS/ToggleButton.css'
 
 export default function TournamentCreation({tournament,forma}){
-    //rajouter un switch pour prendre les fonctions dépendamment des formas ou des jeux?
-
+    //rajouter un switch pour prendre les fonctions dépendamment des formats ou des jeux?
 
     //Pour tester:
-    const tournament3 = GetTournament({gameTitle:"Clash of clan"});
-
-    const tournament2 = useRef({
-                nbEquipe: 2,
-                nbUserPerTeam: 5,
-                teams:[{
-                    teamName:"TopG",
-                    members:[
-                        "Wolpher",
-                        "Admin"
-                    ]
-                },{
-                    teamName:"DownG",
-                    members:[
-                        "Test",
-                        "Test2"
-                    ]
-                }]
-        })
-        const tournament5 = useRef({
-            nbEquipe: 2,
-            nbUserPerTeam: 5,
-            teams:[{
-                teamName:"Les casseurs de rotules",
-                members:[
-                    "Wolpher",
-                    "Admin",
-                    "test3",
-                    "test4",
-                    "test5",
-                    "cheh",
-                    "dijasdioajsdijsadioasjd asjdkoiajskdajsdoajd"
-                ]
-            },{
-                teamName:"DownG",
-                members:[
-                    "Test",
-                    "Test2",
-                    "test6",
-                    "test7",
-                    "test8",
-                    "cheh"
-                ]
-            }]
+    //TODO NEED TO CHANGE ALL THIS FUCKING SHIT LATER WHEN DOING MORE GAMES!!!!!
+    const [testTournament, setTestTournament] = useState({
+        teams:[{
+            nbEtoiles:0,
+            nbDestructions:0,
+            team:{
+                teamName:"",
+                members:[""]
+            }
+        },{
+            nbEtoiles:0,
+            nbDestructions:0,
+            team:{
+                teamName:"",
+                members:[""]
+            }
+        }]
+    });
+    const formatTournament = useRef({
+        teams:[{
+            nbEtoiles:0,
+            nbDestructions:0,
+            team:{
+                teamName:"",
+                members:[""]
+            }
+        },{
+            nbEtoiles:0,
+            nbDestructions:0,
+            team:{
+                teamName:"",
+                members:[""]
+            }
+        }]
     })
+
+    const tournament3 = GetTournament({gameTitle:"Clash of clan"});
+    const historique = GetHistorique({gameTitle:"Clash of Clans"});
+    useEffect(() => { 
+        console.log("tournament3: " + JSON.stringify(tournament3))
+        if(tournament3){
+            const tournament21 = JSON.parse(tournament3)
+            console.log("tournament21: "+ JSON.stringify(tournament21))
+            formatTournament.current.teams[0].team.teamName = tournament21.teams[0].teamName
+            formatTournament.current.teams[0].team.members = tournament21.teams[0].members
+            formatTournament.current.teams[1].team.teamName = tournament21.teams[1].teamName
+            formatTournament.current.teams[1].team.members = tournament21.teams[1].members
+            console.log("formatTournament: " + JSON.stringify(formatTournament))
+            setTestTournament(formatTournament.current)
+        }
+    },[tournament3])
+
     //need time to load the data
     if(!tournament3){
         return(
@@ -64,32 +70,109 @@ export default function TournamentCreation({tournament,forma}){
     }    
     return(
         <>
-            <ClashOfClan tournament={JSON.parse(tournament3)}/>
+            <ClashOfClan tournament={testTournament} historique={historique}/>
         </>
     )
 }
-//étape 3, réussir à faire en sorte que ça affiche juste le nombre de match live (si y'a aucun match de joué ça affiche le match 1/3, si y,en a 1, ça affiche le 2/3, si y,en a 2, ça affiche le 3/3)
-//étape 5, avoir un moyen d'afficher les matchs déjà terminé
-//-------> étape 7, faire quelque chose pour pouvoir ajouter les données du tournoi, décidé qui a win, combien d'étoile vs combien de pourcent, rentrez les stats des joueurs. (rajoutez une alerte pour si je dépasses le nb max d'étoiles et le nbMax de destructions et si les 2 équipes sont à false)
 //étape 8, trouver un moyen d'afficher clairement quel équipe à gagné (changer de color?,ect)
 //étape 9, trouver un moyen de montrer clairement s'il y a eu une égalité (très peu probable, mais on ne sait jamais)
-//étape 10, tester en masse et fix les bugs?
-function ClashOfClan({tournament}){
+//étape 10, être satisfait du visuel (peut-être essayer de mettre les tournois au milieu milieu s'il est le seul, peut être les affiché de gauche à droite, idk)
+//étape 11, tester en masse et fix les bugs?
+function ClashOfClan({tournament, historique}){
     //always only 2 teams
     const divRef = useRef(null);
-    const nbGame = new Array(2).fill(null);
-
-    useEffect(() => {//when there is only one thing to load, I want it to load in the middle of the div
-        if(nbGame.length === 1 && divRef !== null) {
+    let historiqueGame = new Array(2).fill(null); //need to change this shit too
+    console.log("tournament: " + JSON.stringify(tournament))
+    //change useEffect and might not even need it (étape 10)
+    /*useEffect(() => {//when there is only one thing to load, I want it to load in the middle of the div
+        if(historiqueGame.games.length === 1 && divRef !== null) {
             divRef.current.classList.add("Middle")
         }else{
             divRef.current.classList.remove("Middle")
         }
-    },[nbGame, divRef])
-    
+    },[historiqueGame, divRef])*/
+    if(historique.success){
+        historiqueGame = JSON.parse(historique.historique)
+        historiqueGame.games.push(tournament)
+    }
+    console.log(JSON.stringify(historiqueGame))
     return(
     <div className="parentDiv" ref={divRef}>
-        {nbGame.map((game,nbGame) => (
+        {historique.success ? (
+            <>
+                {historiqueGame.games.map((game,nbGame) => (
+                    <>
+                    {console.log("game: " + JSON.stringify(game) )}
+                        <p key={nbGame +1} className="gameDisplay">Game: {nbGame + 1}/3</p>
+                        <div className="teamsDisplay">
+                        {game.teams.map((team, index) => (
+                        <>
+                            <div className="singleTeamDisplay" key={index}>
+                                <div className="teamNameDisplay">
+                                    <p className="teamName">{team.team.teamName}</p>
+                                    <div className="etoile">
+                                        <div className="nbEtoiles_Destructions">
+                                            {team.nbEtoiles}
+                                            </div>
+                                        <AiFillStar className="etoilesSpecs"/>
+                                        </div>
+                                    <div className="destructions">
+                                        <div className="nbEtoiles_Destructions">{team.nbDestructions}</div>
+                                        %
+                                    </div>
+                                </div>
+                                {team.team.members.map((member) => (
+                                    <div className="membersDisplay">{member}</div>
+                                ))}
+                            </div>
+                            {index ===0 ? (
+                                <div className="swords"><Icon icon={"game-icons:sword-clash"}/></div>
+                                
+                            ):(
+                                <>
+                                </>
+                            )}
+                        </>
+                        ))}
+                        </div>
+                    </>
+                ))}
+            </>
+        ): (
+            <>
+                <p className="gameDisplay">Game: 1/3</p>
+                <div className="teamsDisplay">
+                {tournament.teams.map((team, index) => (
+                <>
+                    <div className="singleTeamDisplay" key={index}>
+                        <div className="teamNameDisplay">
+                            <p className="teamName">{team.team.teamName}</p>
+                            <div className="etoile">
+                                <div className="nbEtoiles_Destructions">0</div>
+                                <AiFillStar className="etoilesSpecs"/>
+                                </div>
+                            <div className="destructions">
+                                <div className="nbEtoiles_Destructions">0</div>
+                                %
+                            </div>
+                        </div>
+                        {team.team.members.map((member) => (
+                            <div className="membersDisplay">{member}</div>
+                        ))}
+                    </div>
+                    {index ===0 ? (
+                        <div className="swords"><Icon icon={"game-icons:sword-clash"}/></div>
+                        
+                    ):(
+                        <>
+                        </>
+                    )}
+                </>
+                ))}
+                </div>
+            </>
+        )}
+        {/*{nbGame.map((game,nbGame) => (
             <>
                 <p key={nbGame +1} className="gameDisplay">Game: {nbGame + 1}/3</p>
                 <div className="teamsDisplay">
@@ -124,7 +207,7 @@ function ClashOfClan({tournament}){
                 ))}
                 </div>
             </>
-        ))}
+        ))}*/}
     </div>
 )
 }
